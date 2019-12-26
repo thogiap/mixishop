@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Size extends Model
+class Product_Image extends Model
 {
-    protected $table = 'sizes';
+    protected $table = 'product_images';
     protected $fillable = [
-        'product_id', 'size', 'amount',
+        'image', 'product_id'
     ];
 
-    public function size_product()
+    public function image_product()
     {
         return $this->belongsTo('App\Product','product_id');
     }

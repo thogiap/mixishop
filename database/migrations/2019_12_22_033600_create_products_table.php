@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('slug');
             $table->string('describe');
             $table->string('information');
-            $table->string('rate');
+            $table->string('rate')->nullable();
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');
         });

@@ -7,7 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\User_Product_Comment;
 use App\Cart;
-use App\User_Cart;
+use App\User_Product;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -19,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar','is_admin',
+        'name', 'email', 'password', 'avatar', 'is_admin',
     ];
 
     /**
@@ -40,13 +41,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function user_cart(){
-        $this->hasMany('App\User_Cart');
-    }
-    public function cart(){
+    public function cart()
+    {
         $this->hasMany('App\Cart');
     }
-    public function user_product(){
-        return $this->belongsToMany('App\Product', 'user_product_comments');
+
+    public function user_product()
+    {
+        return $this->belongsToMany('App\Product', 'user_products');
+    }
+
+    public function user_comment()
+    {
+        return $this->hasMany('App\User_Product_Comment');
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
     }
 }

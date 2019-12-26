@@ -11,16 +11,27 @@
 
 </head>
 <body>
-<div>
-    @if(Auth::check())
-        <a href="{{route('logout')}}">Logout</a>
-    @else
-        <a href="{{route('register')}}">Register</a>
-        <a href="{{route('login')}}">Login</a>
-    @endif
+<div class="row">
+    <div class="col-4">
+        <h1><a href="{{route('home')}}">Home</a></h1>
+    </div>
+    <div class="col-8">
+        @if(Auth::check())
+            <a href="{{route('logout')}}"> Logout</a>
+        @else
+            <a href="{{route('register')}}"> Register</a>
+            <a href="{{route('login')}}"> Login</a>
+        @endif
+    </div>
 </div>
-<div>
-    @yield('content')
+<div class="row">
+    <div class="col-4">
+        @include('sidebar')
+    </div>
+    <div class="col-8">
+        @yield('content')
+    </div>
 </div>
+
 </body>
 </html>

@@ -16,8 +16,8 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('price_min');
-            $table->integer('price_max');
+            $table->integer('price_min')->nullable();
+            $table->integer('price_max')->nullable();
             $table->string('slug');
             $table->timestamps();
         });
